@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "772251578942",
+    "firebase_url": "https://flutterfacebook-976f9.firebaseio.com",
+    "project_id": "flutterfacebook-976f9",
+    "storage_bucket": "flutterfacebook-976f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772251578942:android:fa39b6b76a65013f",
+        "android_client_info": {
+          "package_name": "com.example.loginfacebook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772251578942-4au62p97mb3qm14b7eb9fjjageocsscd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loginfacebook",
+            "certificate_hash": "2b6bfb57d6d1efa9ca7dfc64e8295cc8e8f11f32"
+          }
+        },
+        {
+          "client_id": "772251578942-9vq01pmcinpe0ebel3bg76j6am4t255n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVAP0ys_ys4npdmBBdXav5wNsj_sZL9jA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772251578942-9vq01pmcinpe0ebel3bg76j6am4t255n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "772251578942-0qfo8h9fth3n0cek1j0u9rjo3ab44f0i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.loginfacebook"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772251578942:android:344d5c782345775d",
+        "android_client_info": {
+          "package_name": "com.example.logintwitter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772251578942-em5ppj59j18bkebrlega0crnsuo35nea.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.logintwitter",
+            "certificate_hash": "2b6bfb57d6d1efa9ca7dfc64e8295cc8e8f11f32"
+          }
+        },
+        {
+          "client_id": "772251578942-9vq01pmcinpe0ebel3bg76j6am4t255n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVAP0ys_ys4npdmBBdXav5wNsj_sZL9jA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772251578942-9vq01pmcinpe0ebel3bg76j6am4t255n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "772251578942-0qfo8h9fth3n0cek1j0u9rjo3ab44f0i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.loginfacebook"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
