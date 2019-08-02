@@ -1,0 +1,4 @@
+Consumer API keys
+b9CMf0NhNm7upSbDuxuj22jGI (API key)
+
+ij17XQkSX8QXov8HUIJvfd1nSem4TaSO5mYmUD5GNwOhRbOD8k (API secret key)

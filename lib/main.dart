@@ -21,24 +21,24 @@ class _MyAppState extends State<MyApp> {
 
   //Twitter Sign In
   var twitterLogin = new TwitterLogin(
-      consumerKey: '',
-      consumerSecret: ''
+      consumerKey: 'b9CMf0NhNm7upSbDuxuj22jGI',
+      consumerSecret: 'ij17XQkSX8QXov8HUIJvfd1nSem4TaSO5mYmUD5GNwOhRbOD8k'
     );
 
-  void _loginWithTwitter() async{
+  Future<FirebaseUser> _loginWithTwitter() async {
     
     final TwitterLoginResult twitterLoginResult = await twitterLogin.authorize();
     String newMessage;
     switch(twitterLoginResult.status){
       case TwitterLoginStatus.loggedIn:
         var session = twitterLoginResult.session;
-        final token = twitterLoginResult.session.token;
-        final credential = TwitterAuthProvider.getCredential(
-          authToken: token,
+        //final token = twitterLoginResult.session.token;
+        final AuthCredential credential = TwitterAuthProvider.getCredential(
+          authToken: session.token,
           authTokenSecret: session.secret
         );
-         //_user = await _auth.signInWithCredential(credential);
-        //return _user;
+         FirebaseUser _user = await _auth.signInWithCredential(credential);
+        return _user;
         //newMessage = 'Logged in! username: ${twitterLoginResult.session.username}';
         break;
       case TwitterLoginStatus.cancelledByUser:
@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         newMessage = 'Login error: ${twitterLoginResult.errorMessage}';
         break;
     }
-    //return _user;
+    return _user;
 
     /*setState(() {
       _message = newMessage;
@@ -59,7 +59,21 @@ class _MyAppState extends State<MyApp> {
 
     
   }
-  /*void _logInTwitter(){
+  
+  void _logout()async{
+      await twitterLogin.logOut().then((response){
+        isLooged = false;
+      });
+      await _auth.signOut().then((response){
+        isLooged=false;
+      });
+      
+      setState(() {
+        _message = 'Logged out.';
+      });
+  }
+
+  void _logInTwitter(){
       _loginWithTwitter().then((response){
         if(response!=null){
           _user = response;
@@ -68,14 +82,6 @@ class _MyAppState extends State<MyApp> {
             
           });
         }
-      });
-  }*/
-  void _logout()async{
-      await twitterLogin.logOut().then((response){
-        isLooged = false;
-      });
-      setState(() {
-        _message = 'Logged out.';
       });
   }
   @override
@@ -101,14 +107,19 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text('Name: '+ _user.displayName),
-              Image.network(_user.photoUrl),
+              //Text(_user.phoneNumber.toString()),
+              Container(
+                width: 190.0,
+                height: 190.0,
+                child: Image.network(_user.photoUrl)
+                ),
             ],
           )
           : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TwitterSignInButton(
-                onPressed: _loginWithTwitter,
+                onPressed: _logInTwitter,
               )
             ],
           )
