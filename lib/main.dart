@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 //Twitter provider
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 
@@ -17,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLooged = false;
   FirebaseUser _user;
-  String _message = 'Logged out.';
+  //String _message = 'Logged out.';
 
   //Twitter Sign In
   var twitterLogin = new TwitterLogin(
@@ -37,17 +37,20 @@ class _MyAppState extends State<MyApp> {
           authToken: session.token,
           authTokenSecret: session.secret
         );
-         FirebaseUser _user = await _auth.signInWithCredential(credential);
+          _user = await _auth.signInWithCredential(credential);
         return _user;
+        
         //newMessage = 'Logged in! username: ${twitterLoginResult.session.username}';
         break;
       case TwitterLoginStatus.cancelledByUser:
         debugPrint(twitterLoginResult.status.toString());
         newMessage = 'Login cancelled by user.';
+        print(newMessage);
         break;
       case TwitterLoginStatus.error:
         debugPrint(twitterLoginResult.errorMessage.toString());
         newMessage = 'Login error: ${twitterLoginResult.errorMessage}';
+        print(newMessage);
         break;
     }
     return _user;
@@ -64,22 +67,22 @@ class _MyAppState extends State<MyApp> {
       await twitterLogin.logOut().then((response){
         isLooged = false;
       });
-      await _auth.signOut().then((response){
+      /*await _auth.signOut().then((response){
         isLooged=false;
       });
-      
+      */
       setState(() {
-        _message = 'Logged out.';
+       // _message = 'Logged out.';
       });
   }
 
   void _logInTwitter(){
       _loginWithTwitter().then((response){
         if(response!=null){
-          _user = response;
-          isLooged = true;
+          
           setState(() {
-            
+            _user = response;
+          isLooged = true;
           });
         }
       });
@@ -90,7 +93,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Material App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text(isLooged ? "Profile Page" : "Facebook Login"),
+          title: Text(isLooged ? "Profile Page" : "Twitter Login"),
           actions: <Widget>[
             isLooged ? IconButton(
               icon: Icon(Icons.power_settings_new),
@@ -108,11 +111,7 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               Text('Name: '+ _user.displayName),
               //Text(_user.phoneNumber.toString()),
-              Container(
-                width: 190.0,
-                height: 190.0,
-                child: Image.network(_user.photoUrl)
-                ),
+              Image.network(_user.photoUrl)
             ],
           )
           : Column(
