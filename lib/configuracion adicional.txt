@@ -1,0 +1,4 @@
+Configuracion adicional en la app de twitter developer
+
+https://github.com/Gogetter/blog-posts/issues/2
+https://github.com/mahmudahsan/flutter_twitter_login

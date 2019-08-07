@@ -112,7 +112,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
-  firebase_auth: 7d0be46b4a191fd71ccee10cb078e7d45dcf7502
+  firebase_auth: 7a2cc520766f90212b845a5b35316601707bfa25
   firebase_core: b3b02d0b5e9d01aab5e50ba7cbcf84c73cb6883c
   FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
   FirebaseAuth: a06ad63e9bf4c86165b54cceb1c14d4f4c38d419

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:flutter/services.dart';
 //Twitter provider
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
+//import 'package:flutter_twitter/flutter_twitter.dart';
 
  
 void main() => runApp(MyApp());
@@ -17,13 +18,14 @@ class _MyAppState extends State<MyApp> {
   FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLooged = false;
   FirebaseUser _user;
-  //String _message = 'Logged out.';
 
   //Twitter Sign In
   var twitterLogin = new TwitterLogin(
       consumerKey: 'b9CMf0NhNm7upSbDuxuj22jGI',
       consumerSecret: 'ij17XQkSX8QXov8HUIJvfd1nSem4TaSO5mYmUD5GNwOhRbOD8k'
     );
+
+    String _message = 'Logged out.';
 
   Future<FirebaseUser> _loginWithTwitter() async {
     
@@ -38,9 +40,9 @@ class _MyAppState extends State<MyApp> {
           authTokenSecret: session.secret
         );
           _user = await _auth.signInWithCredential(credential);
-        return _user;
+        //return _user;
         
-        //newMessage = 'Logged in! username: ${twitterLoginResult.session.username}';
+        newMessage = 'Logged in! username: ${twitterLoginResult.session.username}';
         break;
       case TwitterLoginStatus.cancelledByUser:
         debugPrint(twitterLoginResult.status.toString());
@@ -56,7 +58,7 @@ class _MyAppState extends State<MyApp> {
     return _user;
 
     /*setState(() {
-      _message = newMessage;
+      //_message = newMessage;
     });*/
    
 
@@ -67,12 +69,12 @@ class _MyAppState extends State<MyApp> {
       await twitterLogin.logOut().then((response){
         isLooged = false;
       });
-      /*await _auth.signOut().then((response){
+      _auth.signOut().then((response){
         isLooged=false;
       });
-      */
+    
       setState(() {
-       // _message = 'Logged out.';
+       print(_message);
       });
   }
 
@@ -89,6 +91,10 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   Widget build(BuildContext context) {
+    dynamic email;
+    email = _user.providerData.map((pro)=>pro.email);
+    print('${_user.providerData.map((pro)=>pro.email)}');
+    
     return MaterialApp(
       title: 'Material App',
       home: Scaffold(
@@ -97,7 +103,9 @@ class _MyAppState extends State<MyApp> {
           actions: <Widget>[
             isLooged ? IconButton(
               icon: Icon(Icons.power_settings_new),
-              onPressed: _logout,
+              onPressed: (){
+                _logout();
+                },
             ) : IconButton(
               icon: Icon(Icons.remove_red_eye),
               onPressed: (){},
@@ -110,6 +118,8 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text('Name: '+ _user.displayName),
+              //Text(_user.providerData.toString()),
+              Text(email.toString()),
               //Text(_user.phoneNumber.toString()),
               Image.network(_user.photoUrl)
             ],
@@ -118,7 +128,10 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TwitterSignInButton(
-                onPressed: _logInTwitter,
+                onPressed: (){
+                  _logInTwitter();
+                  //_loginWithTwitter().then((FirebaseUser user)=>print('Su correo es ${user.email}'));
+                  },
               )
             ],
           )
